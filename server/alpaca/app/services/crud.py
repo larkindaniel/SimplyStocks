@@ -4,8 +4,12 @@ load_dotenv()
 
 import boto3
 from fastapi import HTTPException
-
+from ..schemas import schemas 
 from ..utils import utils
+
+
+username = "danieltest123@gmail.com"
+password = "password123"
 
 def cognito_signup(username: str, password: str):
     client = boto3.client('cognito-idp', region_name=os.environ.get('COGNITO_REGION_NAME'))
@@ -15,6 +19,7 @@ def cognito_signup(username: str, password: str):
             Username=username,
             Password=password
         )
+        print(response)
     except Exception as e: # Generally, will trigger upon non-unique email
         raise HTTPException(status_code=400, detail=f"{e}")
 

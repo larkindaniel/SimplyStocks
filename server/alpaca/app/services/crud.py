@@ -7,10 +7,6 @@ from fastapi import HTTPException
 from ..schemas import schemas 
 from ..utils import utils
 
-
-username = "danieltest123@gmail.com"
-password = "password123"
-
 def cognito_signup(username: str, password: str):
     client = boto3.client('cognito-idp', region_name=os.environ.get('COGNITO_REGION_NAME'))
     try:
@@ -27,13 +23,13 @@ def cognito_signup(username: str, password: str):
     
     # This will confirm user registration as an admin without a confirmation code
     client.admin_confirm_sign_up(
-        UserPoolId=os.environ.get('USER_POOL_ID'),
+        UserPoolId= os.environ.get("USER_POOL_ID"),
         Username=username,
     )
 
     # Now authenticate the user and return the tokens
     auth_response = client.initiate_auth(
-        ClientId=os.environ.get('COGNITO_USER_CLIENT_ID'),
+        ClientId= "4ir3nss9th01m3akm0s6rte68f",
         AuthFlow='USER_PASSWORD_AUTH',
         AuthParameters={
             'USERNAME': username,

@@ -29,7 +29,7 @@ def cognito_signup(username: str, password: str):
 
     # Now authenticate the user and return the tokens
     auth_response = client.initiate_auth(
-        ClientId= "4ir3nss9th01m3akm0s6rte68f",
+        ClientId= os.environ.get("COGNITO_USER_CLIENT_ID"),
         AuthFlow='USER_PASSWORD_AUTH',
         AuthParameters={
             'USERNAME': username,

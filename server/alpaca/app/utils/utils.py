@@ -1,5 +1,7 @@
 import cognitojwt
 import os 
+from dotenv import load_dotenv
+load_dotenv()
 
 from fastapi import HTTPException
 
@@ -25,5 +27,5 @@ def authenticate_token(access_token: str):
     except:
         raise HTTPException(
             status_code=401,
-            detail="User is not authorized to access this resource. Check access token."
+            detail="User is not authorized to get this resource"
         )
